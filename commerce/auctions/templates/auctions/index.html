@@ -1,0 +1,21 @@
+<!-- The homepage showing all active listings. -->
+
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <!-- Displays all active listings in our database. -->
+    <h2>Active Listings</h2>
+    {% for row in listings %}
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="{{ row.image_URL }}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{{ row.title }}</h5>
+                <p class="card-text">{{ row.description }}</p>
+                <h5 class="card-title">${{ row.current_price }}</h5>
+                <!-- Click this to be taken to the listing's page. -->
+                <a href="{% url 'get_listing' row.id %}" class="btn btn-primary">View {{row.title}}</a>
+            </div>
+        </div>
+        <br>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,17 @@
+<!-- A page that displays a list of clickable categories. Each link takes the user to a page
+that displays all active listings in the respective category. -->
+
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h1>Listing Categories</h1>
+    <br>
+    {% for category in categories %}
+        <ul>
+            <li>
+                <a href="{% url 'category_listings' category %}">View active listings in <strong>{{ category }}</strong></a>
+            </li>
+        </ul>
+    {% endfor %}
+
+{% endblock %}

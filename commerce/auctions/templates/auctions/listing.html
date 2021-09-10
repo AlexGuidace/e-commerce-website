@@ -1,0 +1,107 @@
+<!-- A page that is reached from clicking on an active listing. Shows all details about an
+individual listing. -->
+
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <!-- Display active listing with details. -->
+    <img src="{{ image_URL }}" alt="product image" width="300">
+    <br>
+    <br>
+    <h1>{{ title }}</h1>
+    {{ description }}
+    <h4>Current Price: ${{ price }}</h4>
+    <br>
+    <strong>Listing ID:</strong> {{ id }}
+    <br>
+    <strong>Poster:</strong> {{ poster }}
+    <br>
+    <strong>Category:</strong> {{ category }}
+    <br>
+    <strong>Status:</strong> {{ status }}
+    <br>
+
+     <!-- Display winner of the bid if there is one.  -->
+    <strong>Winner:</strong> {{ winner }}
+    <br><br>
+
+    <!-- If the owner is the user and the listing is not closed, give owner the option to 
+    close the bid and announce a winner. -->
+    {% if not not_owner and not closed %}
+        <form method="POST" action="{% url 'close' id %}">
+            {% csrf_token %}
+            <input type="submit" class="btn btn-primary" value="Accept highest bid and close this listing"/>
+        </form>
+    {% endif %}
+
+    <!-- Show if listing was added to a user's watchlist successfully. -->
+    {{ added }}
+
+    <!-- If the user submitted a bid that is not greater than the current price, we will
+    return an error to them. -->
+    {% if not_enough %}
+        Please put in a bid that is greater than the current price!
+    {% endif %}
+    
+    <!-- Show a success message if the database has been successfully updated with the new bid. -->
+    {% if updated %}
+        You've successfully bid on the item!
+    {% endif %}
+
+    <!-- Allow the user to place a bid on this listing if they aren't the owner and the listing
+    is active. -->    
+    {% if not_owner and not closed %}
+        <form method="POST" action="{% url 'bid' id %}">
+            {% csrf_token %}
+            <input type="number" step="0.01" min="0" placeholder="Make your bid here..." name="bid"/>
+            <input type="submit" value="Submit" class="btn btn-primary"/>
+        </form>
+    {% endif %}
+    <br>
+
+    <!-- Check to see if the user that wants to add something to their watchlist doesn't
+    own the listing. Only if they don't own it will the Add Listing button be displayed.
+    Secondly, if remove is True, that means the listing is already in a user's watchlist,
+    We only display the Add Listing button if the user is both not the owner of the listing, 
+    and remove is false (which again, means that that listing is not in the user's watchlist, 
+    so we want to give them that ability through displaying the Add Listing button.)-->
+    {% if not_owner and not remove and not closed %}
+        <!--  Takes listing id to add listing to WatchList. -->
+        <form method="POST" action="{% url 'add_listing' id %}">
+            {% csrf_token %}
+            <input type="submit" class="btn btn-primary" value="Add to Watch List"/>
+        </form>
+    {% endif %}
+    <br>
+
+    <!-- If the user already has this listing associated with them, add remove button.
+    Otherwise, no remove button will be displayed. -->
+    {% if remove %}
+        <form method="POST" action="{% url 'remove' id %}">
+            {% csrf_token %}
+            <input type="submit" class="btn btn-primary" value="Remove from Watch List"/>
+        </form>
+        <br>
+    {% endif %}
+
+    <!-- Comments section. -->
+    <h4>Make a comment</h4>
+    <form action="{% url 'comment' id %}" method="POST">
+        {% csrf_token %}
+        <textarea name="textarea" placeholder="Enter a comment about this listing here..." rows="5" cols="50"></textarea>
+        <br>
+        <!-- Submit form. -->
+        <input type="submit" class="btn btn-primary" value="Submit">
+    </form>
+    <br>
+
+    <!-- Display all comments for this listing here. -->
+    <h4>Comments by users</h4>
+    {% for comment in comments %}
+        <hr>
+        <strong>{{ comment.user_ID }}</strong>
+        <br>
+        {{ comment.comment }}
+        <hr>
+    {% endfor %}
+{% endblock %}
