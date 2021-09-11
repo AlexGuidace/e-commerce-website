@@ -6,7 +6,7 @@
     <img alt="LinkedIn Badge" src="https://img.shields.io/badge/LinkedIn-Alex_Guidace-brightgreen?logo=linkedin&logoColor=blue&style=flat-square">
 </a>
 
-# **Stock Trading Website**
+# **E-Commerce Website**
 
 # Description
 A web application focusing mainly on the backend using Python and Django.
