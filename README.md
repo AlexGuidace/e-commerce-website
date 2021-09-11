@@ -11,7 +11,7 @@
 # Description
 A web application focusing mainly on the backend using Python and Django.
 
-Through this ebay-like app, I can do many of the things an ebay user would be able to do: post items to bid on, view items, bid on items, add and remove items to and from my watchlist, and browse categories for items.
+Through this ebay-like app, you can do many of the things an ebay user would be able to do: post items to bid on, view items, bid on items, add and remove items to and from your watchlist, and browse categories for items.
 
 I built this project for [Harvard CS50's Web Course](https://cs50.harvard.edu/web/2020/), a hands-on course that teaches students how to build websites.
 
