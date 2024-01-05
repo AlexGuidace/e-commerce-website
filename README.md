@@ -18,18 +18,18 @@ I built this project for [Harvard CS50's Web Course](https://cs50.harvard.edu/we
 # Project Files
 The following links contain summary overviews of each file created or modified by me in the project. Please refer to a file's code directly for specific implementation and details regarding that file.
 
-* [models.py](#models.py)
-* [admin.py](#admin.py)
-* [urls.py](#urls.py)
-* [views.py](#views.py)
-* [categories.html](#categories.html)
-* [listing.html](#listing.html)
-* [success.html](#success.html)
-* [watchlist.html](#watchlist.html)
-* [category_listings.html](#category_listings.html)
-* [create_listing.html](#create_listing.html)
-* [index.html](#index.html)
-* [layout.html](#layout.html)
+* [models.py](#modelspy)
+* [admin.py](#adminpy)
+* [urls.py](#urlspy)
+* [views.py](#viewspy)
+* [categories.html](#categorieshtml)
+* [listing.html](#listinghtml)
+* [success.html](#successhtml)
+* [watchlist.html](#watchlisthtml)
+* [category_listings.html](#category_listingshtml)
+* [create_listing.html](#create_listinghtml)
+* [index.html](#indexhtml)
+* [layout.html](#layouthtml)
 
 ## models.py
 Where we store the Django models used for the website.
